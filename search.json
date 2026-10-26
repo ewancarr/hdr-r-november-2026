@@ -1,0 +1,339 @@
+[
+  {
+    "objectID": "slides/00-welcome/welcome.html#course-materials",
+    "href": "slides/00-welcome/welcome.html#course-materials",
+    "title": "R for Health Data Research",
+    "section": "Course materials 📚",
+    "text": "Course materials 📚\nAll lectures and practicals can be found at the link below:\n\newancarr.github.io/hdr-r-november-2026\n\n\nYou should have received the details via email from HDR UK.\nUpdated throughout the course and available for at least one month after the final session."
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#submit-your-questions",
+    "href": "slides/00-welcome/welcome.html#submit-your-questions",
+    "title": "R for Health Data Research",
+    "section": "Submit your questions 🙋",
+    "text": "Submit your questions 🙋\nClick the “Ask a question” button on the course site to send me questions during the week."
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#pre-course-videos-and-homework",
+    "href": "slides/00-welcome/welcome.html#pre-course-videos-and-homework",
+    "title": "R for Health Data Research",
+    "section": "Pre-course videos and homework 📝",
+    "text": "Pre-course videos and homework 📝\nThe sessions are spread over five weeks, allowing time for the material to sink in before moving on.\n\nSome sessions may have a short video to watch before the session.\nThese will be posted on the HDR UK Futures platform.\nSome sessions contain extra ‘homework’ exercises. If you want more practice, have at go at these in your own time."
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#expectations",
+    "href": "slides/00-welcome/welcome.html#expectations",
+    "title": "R for Health Data Research",
+    "section": "Expectations 💡",
+    "text": "Expectations 💡\n\nExpect confusion. It’s inevitable; you’re not doing anything wrong.\nMistakes are normal, even after many years of using R.\nAllow time; things will take (much) longer at first.\nIt can help to use R for a specific project, before switching completely."
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#what-this-course-is-about",
+    "href": "slides/00-welcome/welcome.html#what-this-course-is-about",
+    "title": "R for Health Data Research",
+    "section": "What this course is about ✅",
+    "text": "What this course is about ✅\n\nBuilding confidence in using R for health data science\nLearning to write, run, and understand R code\nWorking with complex, real-world data — importing, tidying, transforming, and summarising\nDeveloping efficient, reproducible workflows in R\nMoving toward modern, professional programming practice"
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#what-this-course-is-not-about",
+    "href": "slides/00-welcome/welcome.html#what-this-course-is-not-about",
+    "title": "R for Health Data Research",
+    "section": "What this course is not about ❌",
+    "text": "What this course is not about ❌\n\nStatistical modelling or inference\nHypothesis tests, regression, or prediction modelling\nDetailed coverage of specific statistical packages\n\nI’ll touch on these where relevant, but we won’t teach advanced statistics here."
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#learning-r-is-a-journey",
+    "href": "slides/00-welcome/welcome.html#learning-r-is-a-journey",
+    "title": "R for Health Data Research",
+    "section": "Learning R is a journey",
+    "text": "Learning R is a journey\n\n\n\n\n\n\n\n“If I take one more step, it’ll be the farthest away from home I’ve ever been.”"
+  },
+  {
+    "objectID": "slides/00-welcome/welcome.html#coding-with-ai",
+    "href": "slides/00-welcome/welcome.html#coding-with-ai",
+    "title": "R for Health Data Research",
+    "section": "Coding with AI",
+    "text": "Coding with AI\n\nClaude Code Codex Gemini CLI GitHub Copilot Positron Assistant\n\n\nAgents that read your project, write code, run it and fix their own errors."
+  },
+  {
+    "objectID": "session-1/practical-1-2.html",
+    "href": "session-1/practical-1-2.html",
+    "title": "Data frames",
+    "section": "",
+    "text": "This practical will guide you through creating, manipulating, and subsetting data frames, and importing and exporting data.",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 2"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-2.html#data-frames",
+    "href": "session-1/practical-1-2.html#data-frames",
+    "title": "Data frames",
+    "section": "Data frames",
+    "text": "Data frames\n\nCombine the three vectors we created in Practical 1 into a new data frame. Remember to store the result as a new object.\n\n\nx &lt;- 1:5\ny &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\nz &lt;- rnorm(5)\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmy_data &lt;- data.frame(x, y, z)\n\n\n\n\n\nCount the number of rows and columns (e.g., nrow, ncol) and get the column names (names) of this data frame.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n# Assuming your data frame above was stored in an object called 'my_data':\nnrow(my_data)\n\n[1] 5\n\nncol(my_data)\n\n[1] 3\n\nnames(my_data)\n\n[1] \"x\" \"y\" \"z\"",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 2"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-2.html#built-in-datasets",
+    "href": "session-1/practical-1-2.html#built-in-datasets",
+    "title": "Data frames",
+    "section": "Built-in datasets",
+    "text": "Built-in datasets\nR has many built-in datasets that can be loaded with the data function. You can view available datasets by typing data(). For example:\n\n1data()\n2data(mtcars)\n3head(mtcars)\n\n\n1\n\nList all available datasets.\n\n2\n\nLoad mtcars, one of the built-in datasets.\n\n3\n\nPreview the first few rows of mtcars.\n\n\n\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\n\n\n\n\n\nNote\n\n\n\nNote that, once you’ve loaded the dataset with data, you can see it in the “Environment” pane in RStudio.\n\n\nMany packages also come with datasets. We can see the datasets provided by a given package by typing, for example:\n\n1library(lme4)\ndata(package = \"lme4\")\n\n\n1\n\nTo run this line, you’ll need to install lme4 first.",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 2"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-2.html#importing-data",
+    "href": "session-1/practical-1-2.html#importing-data",
+    "title": "Data frames",
+    "section": "Importing data",
+    "text": "Importing data\nThe starwars dataset is a built-in dataset provided by the dplyr package. It contains data on characters from the Star Wars universe, including variables such as name, height, mass, species, homeworld, and films.\nTo practice importing data, let’s first export the first 10 columns from the starwars dataset in a variety of formats:\n\n1library(tidyverse)\n2library(haven)\n3library(writexl)\n\nstarwars &lt;- starwars[, 1:10]\n\nwrite_csv(starwars, file = \"starwars.csv\")\nwrite_xlsx(starwars, path = \"starwars.xlsx\")\nwrite_dta(starwars, path = \"starwars.dta\")\nwrite_sav(starwars, path = \"starwars.sav\")\n\n\n1\n\nWe’ll introduce the tidyverse package next session.\n\n2\n\nA package for importing and exporting data in different formats (e.g., Stata, SPSS).\n\n3\n\nA package for importing and exporting Microsoft Excel files.\n\n\n\n\n\n\n\n\nImport starwars.csv using read_csv from the readr package.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nstarwars_csv &lt;- read_csv(\"starwars.csv\")\n\n\n\n\n\n\n\n\n\n\nNoteQuestions\n\n\n\n\n\n\nWhat does this output mean?\nWhat does the col_types argument do?\n\n\n\n\n\nImport starwars.xlsx using read_xlsx from the readxl package.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nlibrary(readxl)\nstarwars_xlsx  &lt;- read_xlsx(\"starwars.xlsx\")\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nIf you want to use a function without loading the package, you can type :: to refer to a specific function. For example:\n\nreadxl::read_xlsx(\"starwars.xlsx\")\n\nYou might want to do this when you only need a single function once (e.g., importing).\n\n\n\nImport starwars.dta (a Stata dataset) and starwars.sav (an SPSS dataset) using appropriate functions from the haven package.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nlibrary(haven)\n\nstarwars_dta  &lt;- read_dta(\"starwars.dta\")\nstarwars_sav  &lt;- read_sav(\"starwars.sav\")",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 2"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-2.html#subsetting",
+    "href": "session-1/practical-1-2.html#subsetting",
+    "title": "Data frames",
+    "section": "Subsetting",
+    "text": "Subsetting\nSubsetting is the process of selecting specific elements, rows, or columns from a data object based on conditions or indices.\n\nDefine a vector containing letters A to F.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\na_to_f &lt;- c(\"A\", \"B\", \"C\", \"D\", \"E\", \"F\")\n\n\n\n\n\n\n\nNote\n\n\n\n\n\nYou could also create this vector using the built-in LETTERS vector and subsetting:\n\na_to_f &lt;- LETTERS[1:6]\n\n\n\n\n\n\n\n\nUse subsetting to select:\n\n\nThe first element (i.e., A)\nThe third element (i.e., C)\nAll except the last element (i.e., A, B, C, D, E)\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\nWe can select elements by position:\n\n# First element\na_to_f[1]\n\n[1] \"A\"\n\n# Third element\na_to_f[3]\n\n[1] \"C\"\n\n\nTo select ‘all except the last’ element, we need to use negation:\n\na_to_f[-6]\n\n[1] \"A\" \"B\" \"C\" \"D\" \"E\"\n\n\nNote that this would only work if the vector has exactly five elements. We could instead define the position using length (i.e., the number of elements in the vector):\n\na_to_f[-length(a_to_f)]\n\n[1] \"A\" \"B\" \"C\" \"D\" \"E\"\n\n\nThis would work for vectors of any length, for example:\n\nweek_days &lt;- c(\"Monday\", \"Tuesday\", \"Wednesday\")\n\n# This works:\nweek_days[-length(week_days)]\n\n[1] \"Monday\"  \"Tuesday\"\n\n# Whereas our previous solution would fail:\nweek_days[-6]\n\n[1] \"Monday\"    \"Tuesday\"   \"Wednesday\"\n\n\n\n\n\n\nDefine a list containing a character vector, a logical value, and another list:\n\n\nmylist &lt;- list(\n  a = c(\"Monday\", \"Tuesday\", \"Wednesday\"),\n  b = TRUE,\n  c = list(rnorm(5), 21.3, \"firstname\")\n)\n\n\nUse subsetting to select:\n\n\nThe first element\nThe element named b\nTuesday\n21.3\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n# i.  The first element;\n\nmylist[[1]]\n\n[1] \"Monday\"    \"Tuesday\"   \"Wednesday\"\n\n# ii. The element named `b`;\n\nmylist$b\n\n[1] TRUE\n\nmylist[[\"b\"]]\n\n[1] TRUE\n\nmylist[\"b\"]\n\n$b\n[1] TRUE\n\nmylist[names(mylist) == \"b\"]\n\n$b\n[1] TRUE\n\n# iii. `Tuesday`\n\nmylist[[\"a\"]][2]\n\n[1] \"Tuesday\"\n\nmylist[[1]][2]\n\n[1] \"Tuesday\"\n\n# iv. `21.3`\n\nmylist$c[[2]]\n\n[1] 21.3\n\nmylist[[3]][[2]]\n\n[1] 21.3",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 2"
+    ]
+  },
+  {
+    "objectID": "session-1/session-1.html",
+    "href": "session-1/session-1.html",
+    "title": "🐣 Session 1: Beginner",
+    "section": "",
+    "text": "This first session provides a gentle introduction to R for those new to the language. We’ll explore what makes R a widely-used tool for data analysis and how it compares to alternatives such as Python, Stata, and SPSS.\nWe’ll cover essential building blocks of the R language, including using the console, installing packages, writing scripts, and navigating help files. You will learn about how to handle different data types, such as missing values and factors, and techniques for subsetting objects. We’ll finish by looking at control flow: running code conditionally with if, else and ifelse().\n\nTimetable\n\n\n\n\n    \n\n    \n    \n    \n      \n        \n        \n              \n                Time\n                Topic\n                Slides and practicals\n              \n        \n        \n        \n                \n                  Pre-course\n                  Introduction to R and RStudioHow does R compare to other languages?\n                  PDF\n                \n                \n                  13:30 — 13:50\n                  Welcome to the courseWhat to expect when learning R\n                  HTML\n                \n                \n                  13:50 — 14:25\n                  Objects and assignment; vectorsData types; missing values\n                  PDF\n                \n                \n                  14:25 — 14:50\n                  Practical 1\n                  HTML\n                \n                \n                  14:50 — 15:00\n                  Break\n                  \n                \n                \n                  15:00 — 15:50\n                  Data frames; importing and exporting dataSubsetting\n                  PDF\n                \n                \n                  15:50 — 16:00\n                  Break\n                  \n                \n                \n                  16:00 — 16:30\n                  Practical 2\n                  HTML\n                \n                \n                  16:30 — 16:50\n                  Control flow: if, else and ifelse()\n                  PDF\n                \n                \n                  16:50 — 17:00\n                  What's coming: overview of Sessions 2–5",
+    "crumbs": [
+      "Ask a question",
+      "Session 1"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About Me",
+    "section": "",
+    "text": "Ewan Carr\nReader in Biostatistics Department of Biostatistics & Health Informatics King’s College London\n\n\n\n King’s College London  GitHub  Bluesky\nI’m a Reader in Biostatistics at King’s College London, where my research sits at the intersection of data science, digital health, and mental health care. I work on developing and evaluating clinical prediction models using real-world data—including electronic health records, smartphone-based assessments, and wearable sensors—with the goal of improving clinical decision-making and patient outcomes.\nMy current projects include tools to support stratified treatment for depression, methods for assessing fairness in predictive models, and software to guide sample size calculations in machine learning studies. Much of this work is done in collaboration with clinicians, computer scientists, and industry partners.\nI’m committed to open, reproducible science and to building tools and workflows that make robust statistical methods more accessible to health researchers. I also teach and supervise across postgraduate programmes in statistics and health data science, and enjoy mentoring early-career researchers.",
+    "crumbs": [
+      "Ask a question",
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "This five-day course offers a comprehensive journey in R, from beginner to advanced levels, with a focus on practical data analysis, visualisation, and real-world applications in health data science.\nWhatever your background or experience with R — whether you’re a total beginner or have some prior experience — we hope you find this course useful, enjoyable, and the beginning of a rewarding journey using R.\n\n\n\n\n\n\n\n\n  Session 1Mon 2 NovBeginner\n  Session 2Mon 9 NovIntermediate 1\n  Session 3Mon 16 NovIntermediate 2\n  Session 4Mon 23 NovAdvanced\n  Session 5Mon 30 NovAdvanced\n\n\n  Five Mondays, November 2026\n  13:30–17:00 UK time\n  Live on Zoom\n  Slides and practicals appear here on the day\n\nEach session mixes live lectures and practical exercises, with time for questions throughout.\n\n\n\n\nZoom link and site details. HDR UK will email you the Zoom link and details of this site before the course starts. Please keep that email to hand for each session.\nSet up R and RStudio beforehand. Please make sure you have a working R environment before the first session. See the Software page for instructions.\nQuestions? For anything about joining or registration, contact HDR UK at learn@hdruk.ac.uk.\n\n\n\n\nThe course starts with the basics of R, including data types, subsetting, and control flow. We then move on to data manipulation, writing functions, and creating visualisations with ggplot2. Later sessions cover more advanced techniques such as iteration and efficient modelling with purrr and broom. Practical exercises and a mini project provide hands-on experience with health-related datasets, along with dynamic reporting using Quarto.\n\n\n\n\nMonday 2 November · Beginner\n\nWelcome; what to expect when learning R\nObjects and assignment; vectors; data types; missing values\nData frames; importing and exporting data; subsetting\nControl flow: running code conditionally with if, else and ifelse()\n\n\n\n\n\nMonday 9 November · Intermediate 1\n\nUsing and writing functions in R\nData manipulation with the tidyverse\n\nPipes; importing data\nSelecting, filtering and sorting (select, filter, arrange)\nCreating and modifying columns (mutate)\nRecoding variables (if_else, case_when)\n\n\n\n\n\n\n\n\n\nMonday 16 November · Intermediate 2\n\nKeeping an analysis project organised\nMerging and appending datasets (left_join, bind_rows)\nReshaping data between ‘wide’ and ‘long’ formats (pivot_longer, pivot_wider)\nGrouping and summarising (group_by, summarise)\n\n\n\n\n\nMonday 23 November · Advanced\n\nCreating plots with ggplot2\nDynamic reporting with Quarto\nWorking with dates and times\nMini project: introduction\n\n\n\n\n\n\nMonday 30 November · Advanced\n\nMini project: walkthrough and questions\nWorking efficiently with lists; introduction to purrr\nFitting many models at once with purrr and broom\nProgramming with data frames: applying the same operation to many columns with across(); writing your own reusable dplyr and tidyr functions\nEfficient text manipulation with regular expressions\n\nThis outline is indicative. In practice we adjust the pace to suit the group, so topics may shift slightly between sessions.",
+    "crumbs": [
+      "Ask a question",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#dates-and-times",
+    "href": "index.html#dates-and-times",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "Session 1Mon 2 NovBeginner\n  Session 2Mon 9 NovIntermediate 1\n  Session 3Mon 16 NovIntermediate 2\n  Session 4Mon 23 NovAdvanced\n  Session 5Mon 30 NovAdvanced\n\n\n  Five Mondays, November 2026\n  13:30–17:00 UK time\n  Live on Zoom\n  Slides and practicals appear here on the day\n\nEach session mixes live lectures and practical exercises, with time for questions throughout.",
+    "crumbs": [
+      "Ask a question",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#joining-the-course",
+    "href": "index.html#joining-the-course",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "Zoom link and site details. HDR UK will email you the Zoom link and details of this site before the course starts. Please keep that email to hand for each session.\nSet up R and RStudio beforehand. Please make sure you have a working R environment before the first session. See the Software page for instructions.\nQuestions? For anything about joining or registration, contact HDR UK at learn@hdruk.ac.uk.",
+    "crumbs": [
+      "Ask a question",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Welcome 👋",
+    "section": "",
+    "text": "The course starts with the basics of R, including data types, subsetting, and control flow. We then move on to data manipulation, writing functions, and creating visualisations with ggplot2. Later sessions cover more advanced techniques such as iteration and efficient modelling with purrr and broom. Practical exercises and a mini project provide hands-on experience with health-related datasets, along with dynamic reporting using Quarto.\n\n\n\n\nMonday 2 November · Beginner\n\nWelcome; what to expect when learning R\nObjects and assignment; vectors; data types; missing values\nData frames; importing and exporting data; subsetting\nControl flow: running code conditionally with if, else and ifelse()\n\n\n\n\n\nMonday 9 November · Intermediate 1\n\nUsing and writing functions in R\nData manipulation with the tidyverse\n\nPipes; importing data\nSelecting, filtering and sorting (select, filter, arrange)\nCreating and modifying columns (mutate)\nRecoding variables (if_else, case_when)\n\n\n\n\n\n\n\n\n\nMonday 16 November · Intermediate 2\n\nKeeping an analysis project organised\nMerging and appending datasets (left_join, bind_rows)\nReshaping data between ‘wide’ and ‘long’ formats (pivot_longer, pivot_wider)\nGrouping and summarising (group_by, summarise)\n\n\n\n\n\nMonday 23 November · Advanced\n\nCreating plots with ggplot2\nDynamic reporting with Quarto\nWorking with dates and times\nMini project: introduction\n\n\n\n\n\n\nMonday 30 November · Advanced\n\nMini project: walkthrough and questions\nWorking efficiently with lists; introduction to purrr\nFitting many models at once with purrr and broom\nProgramming with data frames: applying the same operation to many columns with across(); writing your own reusable dplyr and tidyr functions\nEfficient text manipulation with regular expressions\n\nThis outline is indicative. In practice we adjust the pace to suit the group, so topics may shift slightly between sessions.",
+    "crumbs": [
+      "Ask a question",
+      "Welcome"
+    ]
+  },
+  {
+    "objectID": "software.html",
+    "href": "software.html",
+    "title": "Software",
+    "section": "",
+    "text": "You will need access to R and RStudio Desktop to participate in the practicals. R is the programming language, whereas RStudio Desktop is an editor we’ll use during the course.\nYou have two options:\n\nCreate a free account at https://posit.cloud, an online version of RStudio.\nInstall R and RStudio locally on your computer. See the links on this page. Note that you need to install both R and RStudio.\n\nOnce you’ve installed R and RStudio, install the tidyverse package by typing:\n\ninstall.packages(\"tidyverse\")\n\nPlease note:\n\nYou should use a recent version of R (e.g., 4.5.0 or higher). You can check which version you have installed by running sessionInfo() at the command prompt.\nThe online option is sufficient for this course. However, if you’d like to practise outside the course or run your own analyses, we recommend installing R locally.\n\n\n\n\n\n\n\nImportant\n\n\n\nPlease ensure you can access to a working R environment before the course starts. This could be the online option above or a local installation.",
+    "crumbs": [
+      "Ask a question",
+      "Software"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html",
+    "href": "session-1/practical-1-1.html",
+    "title": "RStudio basics",
+    "section": "",
+    "text": "This practical introduces the basics of using RStudio Desktop1, including navigating its interface and using keyboard shortcuts.",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#opening-rstudio",
+    "href": "session-1/practical-1-1.html#opening-rstudio",
+    "title": "RStudio basics",
+    "section": "Opening RStudio",
+    "text": "Opening RStudio\n\nOpen RStudio on your computer2.\nOpen a new script editor within RStudio.\nPractice using keyboard shortcuts:\n\nSwitch between the console and script editor with Ctrl + 1 and Ctrl + 2.\nScroll through the console history with ↑ and ↓.\nSearch the console history with Ctrl + r.\nClear the console screen with Ctrl + l.\n\n(Optional) Pick a colour scheme in the settings.\nReview the RStudio cheatsheet. What is the keyboard shortcut to comment (and uncomment) the selected text?",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#using-r-as-a-calculator",
+    "href": "session-1/practical-1-1.html#using-r-as-a-calculator",
+    "title": "RStudio basics",
+    "section": "Using R as a calculator",
+    "text": "Using R as a calculator\nType at the console to answer the following questions.\n\nWhat is \\(5^7\\)?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n5^7\n\n[1] 78125\n\n# Or, another way of writing this:\n5**7\n\n[1] 78125\n\n\n\n\n\n\nWhat is the area of a circle with radius 5cm?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n# We could have approximated pi, for example:\n\n3.14 * 5^2\n\n[1] 78.5\n\n# However, R has a built-in constant 'pi' object (see ?pi) that we can use\n# instead:\n\npi * 5^2\n\n[1] 78.53982\n\n\n\n\n\n\nAnd the circumference?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n2 * pi * 5\n\n[1] 31.41593",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#getting-help",
+    "href": "session-1/practical-1-1.html#getting-help",
+    "title": "RStudio basics",
+    "section": "Getting help",
+    "text": "Getting help\n\nCheck the help for the fivenum function.\nWhat does the na.rm argument do?\nHow can you calculate the modulo of two numbers?\n\n\n\n\n\n\n\nTipHint\n\n\n\nThe modulo is the remainder after division of one number by another; see here for details. You may need to search online to answer this question.",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#creating-objects",
+    "href": "session-1/practical-1-1.html#creating-objects",
+    "title": "RStudio basics",
+    "section": "Creating objects",
+    "text": "Creating objects\n\nDefine two new objects containing your first and last name as strings.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n# Example for my name:\n\nfirst_name &lt;- \"Ewan\"\nlast_name &lt;- \"Carr\"\n\n\n\n\n\nUse the paste command to concatenate these objects.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npaste(first_name, last_name)\n\n[1] \"Ewan Carr\"\n\n# Note that we haven't stored the result. R will print the output to the\n# console, but then forget the result. We need to assign the output to a\n# new object to store it in memory:\n\nfull_name &lt;- paste(first_name, last_name)\n\n\n\n\n\nRepeat the calculation of the circumference of a circle. This time:\n\nDefine a new variable radius that contains the value 5.\nUse this variable in your calculation.\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nradius &lt;- 5\n\n2 * pi * radius\n\n[1] 31.41593\n\n\n\n\n\n\n\n\n\n\n\nTipReflection\n\n\n\n\nWhat happens if you don’t assign something?\nHow can you tell what objects are currently assigned?\n\n\n\n\nPractice using str and typeof to check the structure and types of the objects you just created.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nstr(first_name)\n\n chr \"Ewan\"\n\ntypeof(first_name)\n\n[1] \"character\"\n\nstr(radius)\n\n num 5\n\ntypeof(radius)\n\n[1] \"double\"\n\n\n\n\n\n\nRemove an object from memory using rm or via the RStudio “Environment” pane.\n\n\nrm(first_name)\nrm(last_name)\nrm(radius)",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#working-with-vectors",
+    "href": "session-1/practical-1-1.html#working-with-vectors",
+    "title": "RStudio basics",
+    "section": "Working with vectors",
+    "text": "Working with vectors\n\nCreate three vectors:\n\nA sequence of numbers from 1 to 5;\n\nThe letters a, b, c, d, e;\n\nFive random numbers.\n\n\n\n\n\n\n\n\nTipHint\n\n\n\nUse the functions c, seq, rnorm(5).\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\n# A sequence of numbers\nx &lt;- c(1, 2, 3, 4, 5)\nx &lt;- seq(1, 5, 1)\nx &lt;- 1:5\n\n# Letters a, b, c, d, e\ny &lt;- c(\"a\", \"b\", \"c\", \"d\", \"e\")\ny &lt;- letters[1:5]\n\n# Five random numbers\nz &lt;- rnorm(5)\n\n\n\n\n\nCreate two vectors, a and b, each containing 10 random numbers (using rnorm).\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\na &lt;- rnorm(10)\nb &lt;- rnorm(10)\n\n\n\n\n\nAdd each value of a to the corresponding value of b, creating a new vector of length 10.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\na + b\n\n [1] -0.12833644 -0.23413435  0.40009628  2.82718939 -1.29512165  1.77917788\n [7] -0.74277169  0.07017542 -0.59816680  1.79703885\n\n# To create a new vector, we must assign the result to a new object:\na_plus_b &lt;- a + b\n\n\n\n\n\nAdd 5 to each value of a.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\na + 5\n\n [1] 4.988856 5.074972 5.724054 6.172787 4.833113 7.310849 4.933478 5.793212\n [9] 4.132860 6.458818\n\n\n\n\n\n\nCombine the two vectors into a single vector of length 20.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nc(a, b)\n\n [1] -0.01114427  0.07497204  0.72405431  1.17278700 -0.16688721  2.31084892\n [7] -0.06652152  0.79321150 -0.86714013  1.45881849 -0.11719217 -0.30910639\n[13] -0.32395803  1.65440239 -1.12823444 -0.53167104 -0.67625018 -0.72303609\n[19]  0.26897333  0.33822036",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/practical-1-1.html#footnotes",
+    "href": "session-1/practical-1-1.html#footnotes",
+    "title": "RStudio basics",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nReferred to as ‘RStudio’ from herein.↩︎\nIf you’re having problems installing R, you can use the online RStudio server provided by posit.↩︎",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Practical 1"
+    ]
+  },
+  {
+    "objectID": "session-1/homework-1-1.html",
+    "href": "session-1/homework-1-1.html",
+    "title": "Homework",
+    "section": "",
+    "text": "This section provides optional exercises for those who want to practise and solidify the concepts introduced in the practicals. The exercises focus on subsetting data frames using the penguins dataset, more advanced vector subsetting with conditionals, and control flow with if, else and ifelse().",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Homework"
+    ]
+  },
+  {
+    "objectID": "session-1/homework-1-1.html#subsetting-data-frames",
+    "href": "session-1/homework-1-1.html#subsetting-data-frames",
+    "title": "Homework",
+    "section": "Subsetting data frames",
+    "text": "Subsetting data frames\nThe penguins dataset contains information about 344 penguins, including 3 different species, collected from 3 islands in the Palmer Archipelago, Antarctica.\n\nLoad the penguins dataset by typing data(penguins) and inspect the first few rows.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\ndata(penguins)\nhead(penguins)\n\n  species    island bill_len bill_dep flipper_len body_mass    sex year\n1  Adelie Torgersen     39.1     18.7         181      3750   male 2007\n2  Adelie Torgersen     39.5     17.4         186      3800 female 2007\n3  Adelie Torgersen     40.3     18.0         195      3250 female 2007\n4  Adelie Torgersen       NA       NA          NA        NA   &lt;NA&gt; 2007\n5  Adelie Torgersen     36.7     19.3         193      3450 female 2007\n6  Adelie Torgersen     39.3     20.6         190      3650   male 2007\n\nnames(penguins)\n\n[1] \"species\"     \"island\"      \"bill_len\"    \"bill_dep\"    \"flipper_len\"\n[6] \"body_mass\"   \"sex\"         \"year\"       \n\nnrow(penguins)\n\n[1] 344\n\n\n\n\n\n\n\n\n\n\n\nTipCan’t find the penguins dataset?\n\n\n\n\n\nThe penguins dataset was added to R in version 4.5.0. If you’re using an earlier version of R, you’ll need to install the palmerpenguins package to access the data:\n\nlibrary(palmerpenguins)\nhead(penguins)\n\nYou can check your current R version with sessionInfo(). Note that some of the variable names are different in the package version of the dataset.\n\n\n\n\nSelect the third column (bill_len) by name:\n\n\nUsing the $ syntax;\nUsing single square brackets (penguins[...]);\nUsing double square brackets (penguins[[...]])\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins$bill_len\n\n  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1 38.6 34.6\n [16] 36.6 38.7 42.5 34.4 46.0 37.8 37.7 35.9 38.2 38.8 35.3 40.6 40.5 37.9 40.5\n [31] 39.5 37.2 39.5 40.9 36.4 39.2 38.8 42.2 37.6 39.8 36.5 40.8 36.0 44.1 37.0\n [46] 39.6 41.1 37.5 36.0 42.3 39.6 40.1 35.0 42.0 34.5 41.4 39.0 40.6 36.5 37.6\n [61] 35.7 41.3 37.6 41.1 36.4 41.6 35.5 41.1 35.9 41.8 33.5 39.7 39.6 45.8 35.5\n [76] 42.8 40.9 37.2 36.2 42.1 34.6 42.9 36.7 35.1 37.3 41.3 36.3 36.9 38.3 38.9\n [91] 35.7 41.1 34.0 39.6 36.2 40.8 38.1 40.3 33.1 43.2 35.0 41.0 37.7 37.8 37.9\n[106] 39.7 38.6 38.2 38.1 43.2 38.1 45.6 39.7 42.2 39.6 42.7 38.6 37.3 35.7 41.1\n[121] 36.2 37.7 40.2 41.4 35.2 40.6 38.8 41.5 39.0 44.1 38.5 43.1 36.8 37.5 38.1\n[136] 41.1 35.6 40.2 37.0 39.7 40.2 40.6 32.1 40.7 37.3 39.0 39.2 36.6 36.0 37.8\n[151] 36.0 41.5 46.1 50.0 48.7 50.0 47.6 46.5 45.4 46.7 43.3 46.8 40.9 49.0 45.5\n[166] 48.4 45.8 49.3 42.0 49.2 46.2 48.7 50.2 45.1 46.5 46.3 42.9 46.1 44.5 47.8\n[181] 48.2 50.0 47.3 42.8 45.1 59.6 49.1 48.4 42.6 44.4 44.0 48.7 42.7 49.6 45.3\n[196] 49.6 50.5 43.6 45.5 50.5 44.9 45.2 46.6 48.5 45.1 50.1 46.5 45.0 43.8 45.5\n[211] 43.2 50.4 45.3 46.2 45.7 54.3 45.8 49.8 46.2 49.5 43.5 50.7 47.7 46.4 48.2\n[226] 46.5 46.4 48.6 47.5 51.1 45.2 45.2 49.1 52.5 47.4 50.0 44.9 50.8 43.4 51.3\n[241] 47.5 52.1 47.5 52.2 45.5 49.5 44.5 50.8 49.4 46.9 48.4 51.1 48.5 55.9 47.2\n[256] 49.1 47.3 46.8 41.7 53.4 43.3 48.1 50.5 49.8 43.5 51.5 46.2 55.1 44.5 48.8\n[271] 47.2   NA 46.8 50.4 45.2 49.9 46.5 50.0 51.3 45.4 52.7 45.2 46.1 51.3 46.0\n[286] 51.3 46.6 51.7 47.0 52.0 45.9 50.5 50.3 58.0 46.4 49.2 42.4 48.5 43.2 50.6\n[301] 46.7 52.0 50.5 49.5 46.4 52.8 40.9 54.2 42.5 51.0 49.7 47.5 47.6 52.0 46.9\n[316] 53.5 49.0 46.2 50.9 45.5 50.9 50.8 50.1 49.0 51.5 49.8 48.1 51.4 45.7 50.7\n[331] 42.5 52.2 45.2 49.3 50.2 45.6 51.9 46.8 45.7 55.8 43.5 49.6 50.8 50.2\n\npenguins[, \"bill_len\"]\n\n  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1 38.6 34.6\n [16] 36.6 38.7 42.5 34.4 46.0 37.8 37.7 35.9 38.2 38.8 35.3 40.6 40.5 37.9 40.5\n [31] 39.5 37.2 39.5 40.9 36.4 39.2 38.8 42.2 37.6 39.8 36.5 40.8 36.0 44.1 37.0\n [46] 39.6 41.1 37.5 36.0 42.3 39.6 40.1 35.0 42.0 34.5 41.4 39.0 40.6 36.5 37.6\n [61] 35.7 41.3 37.6 41.1 36.4 41.6 35.5 41.1 35.9 41.8 33.5 39.7 39.6 45.8 35.5\n [76] 42.8 40.9 37.2 36.2 42.1 34.6 42.9 36.7 35.1 37.3 41.3 36.3 36.9 38.3 38.9\n [91] 35.7 41.1 34.0 39.6 36.2 40.8 38.1 40.3 33.1 43.2 35.0 41.0 37.7 37.8 37.9\n[106] 39.7 38.6 38.2 38.1 43.2 38.1 45.6 39.7 42.2 39.6 42.7 38.6 37.3 35.7 41.1\n[121] 36.2 37.7 40.2 41.4 35.2 40.6 38.8 41.5 39.0 44.1 38.5 43.1 36.8 37.5 38.1\n[136] 41.1 35.6 40.2 37.0 39.7 40.2 40.6 32.1 40.7 37.3 39.0 39.2 36.6 36.0 37.8\n[151] 36.0 41.5 46.1 50.0 48.7 50.0 47.6 46.5 45.4 46.7 43.3 46.8 40.9 49.0 45.5\n[166] 48.4 45.8 49.3 42.0 49.2 46.2 48.7 50.2 45.1 46.5 46.3 42.9 46.1 44.5 47.8\n[181] 48.2 50.0 47.3 42.8 45.1 59.6 49.1 48.4 42.6 44.4 44.0 48.7 42.7 49.6 45.3\n[196] 49.6 50.5 43.6 45.5 50.5 44.9 45.2 46.6 48.5 45.1 50.1 46.5 45.0 43.8 45.5\n[211] 43.2 50.4 45.3 46.2 45.7 54.3 45.8 49.8 46.2 49.5 43.5 50.7 47.7 46.4 48.2\n[226] 46.5 46.4 48.6 47.5 51.1 45.2 45.2 49.1 52.5 47.4 50.0 44.9 50.8 43.4 51.3\n[241] 47.5 52.1 47.5 52.2 45.5 49.5 44.5 50.8 49.4 46.9 48.4 51.1 48.5 55.9 47.2\n[256] 49.1 47.3 46.8 41.7 53.4 43.3 48.1 50.5 49.8 43.5 51.5 46.2 55.1 44.5 48.8\n[271] 47.2   NA 46.8 50.4 45.2 49.9 46.5 50.0 51.3 45.4 52.7 45.2 46.1 51.3 46.0\n[286] 51.3 46.6 51.7 47.0 52.0 45.9 50.5 50.3 58.0 46.4 49.2 42.4 48.5 43.2 50.6\n[301] 46.7 52.0 50.5 49.5 46.4 52.8 40.9 54.2 42.5 51.0 49.7 47.5 47.6 52.0 46.9\n[316] 53.5 49.0 46.2 50.9 45.5 50.9 50.8 50.1 49.0 51.5 49.8 48.1 51.4 45.7 50.7\n[331] 42.5 52.2 45.2 49.3 50.2 45.6 51.9 46.8 45.7 55.8 43.5 49.6 50.8 50.2\n\npenguins[[\"bill_len\"]]\n\n  [1] 39.1 39.5 40.3   NA 36.7 39.3 38.9 39.2 34.1 42.0 37.8 37.8 41.1 38.6 34.6\n [16] 36.6 38.7 42.5 34.4 46.0 37.8 37.7 35.9 38.2 38.8 35.3 40.6 40.5 37.9 40.5\n [31] 39.5 37.2 39.5 40.9 36.4 39.2 38.8 42.2 37.6 39.8 36.5 40.8 36.0 44.1 37.0\n [46] 39.6 41.1 37.5 36.0 42.3 39.6 40.1 35.0 42.0 34.5 41.4 39.0 40.6 36.5 37.6\n [61] 35.7 41.3 37.6 41.1 36.4 41.6 35.5 41.1 35.9 41.8 33.5 39.7 39.6 45.8 35.5\n [76] 42.8 40.9 37.2 36.2 42.1 34.6 42.9 36.7 35.1 37.3 41.3 36.3 36.9 38.3 38.9\n [91] 35.7 41.1 34.0 39.6 36.2 40.8 38.1 40.3 33.1 43.2 35.0 41.0 37.7 37.8 37.9\n[106] 39.7 38.6 38.2 38.1 43.2 38.1 45.6 39.7 42.2 39.6 42.7 38.6 37.3 35.7 41.1\n[121] 36.2 37.7 40.2 41.4 35.2 40.6 38.8 41.5 39.0 44.1 38.5 43.1 36.8 37.5 38.1\n[136] 41.1 35.6 40.2 37.0 39.7 40.2 40.6 32.1 40.7 37.3 39.0 39.2 36.6 36.0 37.8\n[151] 36.0 41.5 46.1 50.0 48.7 50.0 47.6 46.5 45.4 46.7 43.3 46.8 40.9 49.0 45.5\n[166] 48.4 45.8 49.3 42.0 49.2 46.2 48.7 50.2 45.1 46.5 46.3 42.9 46.1 44.5 47.8\n[181] 48.2 50.0 47.3 42.8 45.1 59.6 49.1 48.4 42.6 44.4 44.0 48.7 42.7 49.6 45.3\n[196] 49.6 50.5 43.6 45.5 50.5 44.9 45.2 46.6 48.5 45.1 50.1 46.5 45.0 43.8 45.5\n[211] 43.2 50.4 45.3 46.2 45.7 54.3 45.8 49.8 46.2 49.5 43.5 50.7 47.7 46.4 48.2\n[226] 46.5 46.4 48.6 47.5 51.1 45.2 45.2 49.1 52.5 47.4 50.0 44.9 50.8 43.4 51.3\n[241] 47.5 52.1 47.5 52.2 45.5 49.5 44.5 50.8 49.4 46.9 48.4 51.1 48.5 55.9 47.2\n[256] 49.1 47.3 46.8 41.7 53.4 43.3 48.1 50.5 49.8 43.5 51.5 46.2 55.1 44.5 48.8\n[271] 47.2   NA 46.8 50.4 45.2 49.9 46.5 50.0 51.3 45.4 52.7 45.2 46.1 51.3 46.0\n[286] 51.3 46.6 51.7 47.0 52.0 45.9 50.5 50.3 58.0 46.4 49.2 42.4 48.5 43.2 50.6\n[301] 46.7 52.0 50.5 49.5 46.4 52.8 40.9 54.2 42.5 51.0 49.7 47.5 47.6 52.0 46.9\n[316] 53.5 49.0 46.2 50.9 45.5 50.9 50.8 50.1 49.0 51.5 49.8 48.1 51.4 45.7 50.7\n[331] 42.5 52.2 45.2 49.3 50.2 45.6 51.9 46.8 45.7 55.8 43.5 49.6 50.8 50.2\n\n\n\n\n\n\nSelect the fifth column (flipper_len) by position:\n\n\nUsing single square brackets (penguins[...]);\nUsing double square brackets (penguins[[...]])\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins[[5]]\n\n  [1] 181 186 195  NA 193 190 181 195 193 190 186 180 182 191 198 185 195 197\n [19] 184 194 174 180 189 185 180 187 183 187 172 180 178 178 188 184 195 196\n [37] 190 180 181 184 182 195 186 196 185 190 182 179 190 191 186 188 190 200\n [55] 187 191 186 193 181 194 185 195 185 192 184 192 195 188 190 198 190 190\n [73] 196 197 190 195 191 184 187 195 189 196 187 193 191 194 190 189 189 190\n [91] 202 205 185 186 187 208 190 196 178 192 192 203 183 190 193 184 199 190\n[109] 181 197 198 191 193 197 191 196 188 199 189 189 187 198 176 202 186 199\n[127] 191 195 191 210 190 197 193 199 187 190 191 200 185 193 193 187 188 190\n[145] 192 185 190 184 195 193 187 201 211 230 210 218 215 210 211 219 209 215\n[163] 214 216 214 213 210 217 210 221 209 222 218 215 213 215 215 215 216 215\n[181] 210 220 222 209 207 230 220 220 213 219 208 208 208 225 210 216 222 217\n[199] 210 225 213 215 210 220 210 225 217 220 208 220 208 224 208 221 214 231\n[217] 219 230 214 229 220 223 216 221 221 217 216 230 209 220 215 223 212 221\n[235] 212 224 212 228 218 218 212 230 218 228 212 224 214 226 216 222 203 225\n[253] 219 228 215 228 216 215 210 219 208 209 216 229 213 230 217 230 217 222\n[271] 214  NA 215 222 212 213 192 196 193 188 197 198 178 197 195 198 193 194\n[289] 185 201 190 201 197 181 190 195 181 191 187 193 195 197 200 200 191 205\n[307] 187 201 187 203 195 199 195 210 192 205 210 187 196 196 196 201 190 212\n[325] 187 198 199 201 193 203 187 197 191 203 202 194 206 189 195 207 202 193\n[343] 210 198\n\npenguins[5]\n\n    flipper_len\n1           181\n2           186\n3           195\n4            NA\n5           193\n6           190\n7           181\n8           195\n9           193\n10          190\n11          186\n12          180\n13          182\n14          191\n15          198\n16          185\n17          195\n18          197\n19          184\n20          194\n21          174\n22          180\n23          189\n24          185\n25          180\n26          187\n27          183\n28          187\n29          172\n30          180\n31          178\n32          178\n33          188\n34          184\n35          195\n36          196\n37          190\n38          180\n39          181\n40          184\n41          182\n42          195\n43          186\n44          196\n45          185\n46          190\n47          182\n48          179\n49          190\n50          191\n51          186\n52          188\n53          190\n54          200\n55          187\n56          191\n57          186\n58          193\n59          181\n60          194\n61          185\n62          195\n63          185\n64          192\n65          184\n66          192\n67          195\n68          188\n69          190\n70          198\n71          190\n72          190\n73          196\n74          197\n75          190\n76          195\n77          191\n78          184\n79          187\n80          195\n81          189\n82          196\n83          187\n84          193\n85          191\n86          194\n87          190\n88          189\n89          189\n90          190\n91          202\n92          205\n93          185\n94          186\n95          187\n96          208\n97          190\n98          196\n99          178\n100         192\n101         192\n102         203\n103         183\n104         190\n105         193\n106         184\n107         199\n108         190\n109         181\n110         197\n111         198\n112         191\n113         193\n114         197\n115         191\n116         196\n117         188\n118         199\n119         189\n120         189\n121         187\n122         198\n123         176\n124         202\n125         186\n126         199\n127         191\n128         195\n129         191\n130         210\n131         190\n132         197\n133         193\n134         199\n135         187\n136         190\n137         191\n138         200\n139         185\n140         193\n141         193\n142         187\n143         188\n144         190\n145         192\n146         185\n147         190\n148         184\n149         195\n150         193\n151         187\n152         201\n153         211\n154         230\n155         210\n156         218\n157         215\n158         210\n159         211\n160         219\n161         209\n162         215\n163         214\n164         216\n165         214\n166         213\n167         210\n168         217\n169         210\n170         221\n171         209\n172         222\n173         218\n174         215\n175         213\n176         215\n177         215\n178         215\n179         216\n180         215\n181         210\n182         220\n183         222\n184         209\n185         207\n186         230\n187         220\n188         220\n189         213\n190         219\n191         208\n192         208\n193         208\n194         225\n195         210\n196         216\n197         222\n198         217\n199         210\n200         225\n201         213\n202         215\n203         210\n204         220\n205         210\n206         225\n207         217\n208         220\n209         208\n210         220\n211         208\n212         224\n213         208\n214         221\n215         214\n216         231\n217         219\n218         230\n219         214\n220         229\n221         220\n222         223\n223         216\n224         221\n225         221\n226         217\n227         216\n228         230\n229         209\n230         220\n231         215\n232         223\n233         212\n234         221\n235         212\n236         224\n237         212\n238         228\n239         218\n240         218\n241         212\n242         230\n243         218\n244         228\n245         212\n246         224\n247         214\n248         226\n249         216\n250         222\n251         203\n252         225\n253         219\n254         228\n255         215\n256         228\n257         216\n258         215\n259         210\n260         219\n261         208\n262         209\n263         216\n264         229\n265         213\n266         230\n267         217\n268         230\n269         217\n270         222\n271         214\n272          NA\n273         215\n274         222\n275         212\n276         213\n277         192\n278         196\n279         193\n280         188\n281         197\n282         198\n283         178\n284         197\n285         195\n286         198\n287         193\n288         194\n289         185\n290         201\n291         190\n292         201\n293         197\n294         181\n295         190\n296         195\n297         181\n298         191\n299         187\n300         193\n301         195\n302         197\n303         200\n304         200\n305         191\n306         205\n307         187\n308         201\n309         187\n310         203\n311         195\n312         199\n313         195\n314         210\n315         192\n316         205\n317         210\n318         187\n319         196\n320         196\n321         196\n322         201\n323         190\n324         212\n325         187\n326         198\n327         199\n328         201\n329         193\n330         203\n331         187\n332         197\n333         191\n334         203\n335         202\n336         194\n337         206\n338         189\n339         195\n340         207\n341         202\n342         193\n343         210\n344         198\n\n\n\n\n\nWhat’s the difference between the single ([]) and double brackets ([[]])?",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Homework"
+    ]
+  },
+  {
+    "objectID": "session-1/homework-1-1.html#creating-new-columns",
+    "href": "session-1/homework-1-1.html#creating-new-columns",
+    "title": "Homework",
+    "section": "Creating new columns",
+    "text": "Creating new columns\nWith the penguins data frame:\n\nTabulate the number of missing values (NA) in the sex column.\n\n\n\n\n\n\n\nTipHint\n\n\n\nYou’ll need to use the is.na and table functions and table.\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\ntable(is.na(penguins[[\"sex\"]]))\n\n\nFALSE  TRUE \n  333    11 \n\n# Or, equivalently:\ntable(is.na(penguins$sex))\n\n\nFALSE  TRUE \n  333    11 \n\n# This would also work, but is fairly verbose:\nsum(is.na(penguins$sex))\n\n[1] 11\n\nsum(!is.na(penguins$sex))\n\n[1] 333\n\n\n\n\n\n\nUsing assignment, create a new column, containing bill_len stored as an integer.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins$bill_int &lt;-  as.integer(penguins$bill_len)\n\n\n\n\n\nCreate a new column containing bill_dep formatted to two decimal places.\n\n\n\n\n\n\n\nTipHint\n\n\n\nYou’ll need to use sprintf for this, setting the format argument to %.2f. See the help file for details.\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins$bill_depth_2dp &lt;- sprintf(\"%.2f\", penguins$bill_dep)\n\n\n\n\n\nUse paste to concatenate the species and island columns. Store the result as a new column.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins$species_island &lt;-  paste(penguins$species, penguins$island)",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Homework"
+    ]
+  },
+  {
+    "objectID": "session-1/homework-1-1.html#months-of-the-year",
+    "href": "session-1/homework-1-1.html#months-of-the-year",
+    "title": "Homework",
+    "section": "Months of the year",
+    "text": "Months of the year\n\nDefine a character vector containing the months of the year (i.e., January, February, …, December).\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy &lt;- c(\n  \"January\",\n  \"February\",\n  \"March\",\n  \"April\",\n  \"May\",\n  \"June\",\n  \"July\",\n  \"August\",\n  \"September\",\n  \"October\",\n  \"November\",\n  \"December\"\n)\n\n# Or use the built-in constant 'months.name'\nmoy &lt;- month.name\n\n# NOTE: I'm using 'moy' as short for 'Months of the year', but you can use any\n# label you like.\n\n\n\n\n\nSelect the third element of this vector.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy[3]\n\n[1] \"March\"\n\n\n\n\n\n\nSelect the 6th, 7th, and 8th elements of this vector.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy[c(6, 7, 8)]\n\n[1] \"June\"   \"July\"   \"August\"\n\n# Or, even shorter:\nmoy[6:8]\n\n[1] \"June\"   \"July\"   \"August\"\n\n\n\n\n\n\nSelect the last five elements of this vector.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy[8:12]\n\n[1] \"August\"    \"September\" \"October\"   \"November\"  \"December\" \n\n# The above answer will work, but it assumes that\n# there are always 12 elements in the vector. This\n# is true for this example, but it's good practice\n# write code that can handle various input lengths.\n\ntail(moy, 5)\n\n[1] \"August\"    \"September\" \"October\"   \"November\"  \"December\" \n\n\n\n\n\n\nSelect all months ending in “er” (Hint: str_ends).\n\n\n\n\n\n\n\nTipUse the str_ends function\n\n\n\n\n\nstr_ends is a function that returns a logical value (TRUE or FALSE) indicating whether a string ends with a specified pattern.\nTo use the function, you’ll first need to load the tidyverse library:\n\nlibrary(tidyverse)\n\n\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy[str_ends(moy, \"er\")]\n\n[1] \"September\" \"October\"   \"November\"  \"December\" \n\n\n\n\n\n\nSelect all months starting with “A” (Hint: str_starts).\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nmoy[str_starts(moy, \"A\")]\n\n[1] \"April\"  \"August\"\n\n# As always, there are multiple ways of achieving this.\n# The above method is quite efficient, but you could\n# also try:\n\n# Using regular expressions:\nmoy[str_detect(moy, \"^A\")]\n\n[1] \"April\"  \"August\"\n\n# Using purrr\nkeep(moy, \\(x) str_detect(x, \"^A\"))\n\n[1] \"April\"  \"August\"\n\n# Or, if you really want to over-complicate it:\na_months &lt;- c()\nfor (m in moy) {\n  if (substring(m, 1, 1) == \"A\") {\n    a_months &lt;- c(a_months, m)\n  }\n}  # You shouldn't do this! But try to see what's happening here.",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Homework"
+    ]
+  },
+  {
+    "objectID": "session-1/homework-1-1.html#control-flow",
+    "href": "session-1/homework-1-1.html#control-flow",
+    "title": "Homework",
+    "section": "Control flow",
+    "text": "Control flow\n\nCreate an object x containing a single number. Write an if/else statement that prints \"positive\" if x is greater than zero, and \"zero or negative\" otherwise. Try it with a few different values of x.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nx &lt;- -3\nif (x &gt; 0) {\n  print(\"positive\")\n} else {\n  print(\"zero or negative\")\n}\n\n[1] \"zero or negative\"\n\n\n\n\n\n\nExtend your answer to question 1 so that it prints \"positive\", \"negative\" or \"zero\".\n\n\n\n\n\n\n\nTipHint\n\n\n\nUse else if to add a second condition.\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nx &lt;- 0\nif (x &gt; 0) {\n  print(\"positive\")\n} else if (x &lt; 0) {\n  print(\"negative\")\n} else {\n  print(\"zero\")\n}\n\n[1] \"zero\"\n\n\n\n\n\n\nSelect the body mass (body_mass) of the first penguin in the penguins dataset. Use if/else to create an object called size that is \"heavy\" if the penguin weighs 4,000 grams or more, and \"light\" otherwise.\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nfirst_mass &lt;- penguins$body_mass[1]\nif (first_mass &gt;= 4000) {\n  size &lt;- \"heavy\"\n} else {\n  size &lt;- \"light\"\n}\nsize\n\n[1] \"light\"\n\n\n\n\n\n\nNow try to do the same for every penguin, by replacing penguins$body_mass[1] with penguins$body_mass. What happens, and why?\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nif (penguins$body_mass &gt;= 4000) {\n  size &lt;- \"heavy\"\n} else {\n  size &lt;- \"light\"\n}\n\nError in `if (penguins$body_mass &gt;= 4000) ...`:\n! the condition has length &gt; 1\n\n\nif expects a condition that is a single TRUE or FALSE. Here, the condition penguins$body_mass &gt;= 4000 is a vector with one value per penguin, so R stops with an error.\n\n\n\n\nUse ifelse() to create a new column in penguins called size, containing \"heavy\" or \"light\" for every penguin. Tabulate the new column with table().\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\npenguins$size &lt;- ifelse(penguins$body_mass &gt;= 4000, \"heavy\", \"light\")\ntable(penguins$size)\n\n\nheavy light \n  177   165 \n\n\n\n\n\n\nTwo penguins have a missing body mass. What value do they get in your new size column? Check using table(penguins$size, useNA = \"ifany\").\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\ntable(penguins$size, useNA = \"ifany\")\n\n\nheavy light  &lt;NA&gt; \n  177   165     2 \n\n\nThey are NA. When the condition is NA, ifelse() can’t decide between \"heavy\" and \"light\", so it returns NA. This is usually what you want: it keeps missing values missing.\n\n\n\n\nUse ifelse() with the moy vector you created above to label each month as \"summer\" (June, July and August) or \"not summer\".\n\n\n\n\n\n\n\nTipHint\n\n\n\nThe %in% operator checks whether each element of one vector appears in another, e.g. moy %in% c(\"June\", \"July\").\n\n\n\n\n\n\n\n\nNoteSolution\n\n\n\n\n\n\nifelse(moy %in% c(\"June\", \"July\", \"August\"), \"summer\", \"not summer\")\n\n [1] \"not summer\" \"not summer\" \"not summer\" \"not summer\" \"not summer\"\n [6] \"summer\"     \"summer\"     \"summer\"     \"not summer\" \"not summer\"\n[11] \"not summer\" \"not summer\"",
+    "crumbs": [
+      "Ask a question",
+      "Session 1",
+      "Homework"
+    ]
+  }
+]
