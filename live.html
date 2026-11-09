@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Live Timetable</title>
+<!-- Template for docs/live.html. Built by _scripts/live_timetable.py; edit this file, not the output. -->
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2747; --accent: #1d4ed8; --accent-dark: #1e3a8a;
+    --ink: #1e293b; --muted: #64748b; --border: #dfe4ec;
+    --bg: #f7f8fa; --card: #fff; --highlight: #dbeafe;
+    --break: #f1f5f9; --practical: #ecfdf5; --practical-ink: #047857;
+    --now: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: Lato, system-ui, sans-serif; }
+  header { background: var(--navy); color: #f1f5f9; padding: 18px 32px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  header h1 { margin: 0; font-size: 1.6rem; font-weight: 900; }
+  header .date { color: #93c5fd; font-size: 1.1rem; }
+  header .clock { margin-left: auto; font-family: "Source Code Pro", monospace; font-size: 2.4rem; font-weight: 500; letter-spacing: .02em; }
+  nav.sessions { display: flex; gap: 6px; }
+  nav.sessions a { color: #cbd5e1; text-decoration: none; font-weight: 700; font-size: .85rem; padding: 3px 9px; border-radius: 999px; border: 1px solid #334e73; }
+  nav.sessions a:hover { border-color: #93c5fd; color: #fff; }
+  nav.sessions a.active { background: #93c5fd; color: var(--navy); border-color: #93c5fd; }
+  nav.sessions a.today::after { content: " •"; color: var(--now); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 32px 48px; }
+  .notice { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 10px; padding: 10px 16px; margin-bottom: 18px; font-weight: 700; }
+  .notice:empty { display: none; }
+
+  .delay { display: flex; align-items: center; justify-content: flex-end; gap: 10px; margin: -6px 0 14px; font-size: .9rem; color: var(--muted); }
+  .delay input { width: 180px; accent-color: var(--accent); }
+  .delay output { font-family: "Source Code Pro", monospace; font-weight: 500; min-width: 4.5ch; color: var(--ink); }
+  .delay .status { font-weight: 700; color: #b45309; }
+  .delay button { font: inherit; font-size: .8rem; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 999px; padding: 1px 9px; cursor: pointer; }
+  .delay button:hover { color: var(--ink); border-color: var(--muted); }
+  .delay:not(.on) .status, .delay:not(.on) button { display: none; }
+
+  .summary { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+  .tile { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+  .tile .label { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 700; }
+  .tile .value { font-size: 1.6rem; font-weight: 900; margin-top: 4px; line-height: 1.2; }
+  .tile .sub { color: var(--muted); margin-top: 2px; }
+  .tile.now-tile { border-left: 6px solid var(--accent); }
+  .remaining { font-family: "Source Code Pro", monospace; }
+  .remaining.warn { color: #b45309; }
+
+  .bar { position: relative; display: flex; height: 34px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--card); margin-bottom: 6px; }
+  .bar .seg { height: 100%; border-right: 2px solid var(--bg); background: #c7d2fe; }
+  .bar .seg.break { background: #e2e8f0; }
+  .bar .seg.practical { background: #a7f3d0; }
+  .bar .fill { position: absolute; inset: 0 auto 0 0; background: rgba(15,39,71,.55); pointer-events: none; }
+  .bar .marker { position: absolute; top: -4px; bottom: -4px; width: 3px; background: var(--now); border-radius: 2px; }
+  .bar-labels { position: relative; height: 18px; font-size: .8rem; color: var(--muted); margin-bottom: 24px; }
+  .bar-labels span { position: absolute; transform: translateX(-50%); font-family: "Source Code Pro", monospace; }
+  .bar-labels span:first-child { transform: none; }
+  .bar-labels span:last-child { transform: translateX(-100%); }
+
+  .timeline { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .row { display: grid; grid-template-columns: 150px 80px 1fr; align-items: center; border-bottom: 1px solid var(--border); padding: 0 18px; position: relative; min-height: 44px; }
+  .row:last-child { border-bottom: 0; }
+  .row .t { font-family: "Source Code Pro", monospace; color: var(--muted); font-size: .95rem; }
+  .row .t small { display: block; font-size: .75rem; text-decoration: line-through; opacity: .7; }
+  .row .d { font-weight: 700; color: var(--muted); font-size: .95rem; }
+  .row .topic { font-size: 1.1rem; padding: 8px 0; position: relative; }
+  .row .topic small { display: block; color: var(--muted); font-size: .9rem; }
+  .row code { font-family: "Source Code Pro", monospace; font-size: .9em; background: #eef1f5; padding: 0 4px; border-radius: 4px; }
+  .row.break { background: var(--break); }
+  .row.break .topic { font-style: italic; color: var(--muted); }
+  .row.practical { background: var(--practical); }
+  .row.practical .topic { font-weight: 700; color: var(--practical-ink); }
+  .row.past { opacity: .45; }
+  .row.past .topic::before { content: "✓ "; color: var(--practical-ink); }
+  .row.current { background: var(--highlight); opacity: 1; }
+  .row.current .t, .row.current .d { color: var(--accent-dark); }
+  .row.current .topic { font-weight: 900; font-size: 1.25rem; }
+  .row .prog { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(29,78,216,.10); pointer-events: none; }
+  .nowline { position: absolute; left: 0; right: 0; height: 0; border-top: 3px solid var(--now); z-index: 2; pointer-events: none; }
+  .nowline::before { content: attr(data-time); position: absolute; left: 6px; top: -12px; background: var(--now); color: #fff; font: 700 .75rem "Source Code Pro", monospace; padding: 2px 6px; border-radius: 4px; }
+
+  footer { max-width: 1100px; margin: 0 auto; padding: 0 32px 32px; font-size: .9rem; }
+  footer a { color: var(--muted); }
+
+  @media (max-width: 700px) {
+    main, header, footer { padding-left: 16px; padding-right: 16px; }
+    .summary { grid-template-columns: 1fr; }
+    .row { grid-template-columns: 1fr 60px; }
+    .row .t { grid-column: 1; padding-top: 6px; }
+    .row .d { grid-column: 2; grid-row: 1; text-align: right; }
+    .row .topic { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1 id="title">–</h1>
+    <span class="date" id="date"></span>
+  </div>
+  <nav class="sessions" id="sessionNav"></nav>
+  <span class="clock" id="clock">--:--</span>
+</header>
+
+<main>
+  <div class="notice" id="notice"></div>
+
+  <div class="delay" id="delay">
+    <span class="status" id="delayStatus"></span>
+    <label for="delayInput">Running behind</label>
+    <input type="range" id="delayInput" min="0" max="30" step="1" value="0">
+    <output id="delayValue" for="delayInput">0 min</output>
+    <button type="button" id="delayReset">Reset</button>
+  </div>
+
+  <section class="summary">
+    <div class="tile now-tile">
+      <div class="label">Now</div>
+      <div class="value" id="nowTitle">–</div>
+      <div class="sub" id="nowSub"></div>
+    </div>
+    <div class="tile">
+      <div class="label">Time left in this part</div>
+      <div class="value remaining" id="nowLeft">–</div>
+      <div class="sub" id="nowEnds"></div>
+    </div>
+    <div class="tile">
+      <div class="label">Up next</div>
+      <div class="value" id="nextTitle" style="font-size:1.2rem">–</div>
+      <div class="sub" id="nextSub"></div>
+    </div>
+  </section>
+
+  <div class="bar" id="bar"></div>
+  <div class="bar-labels" id="barLabels"></div>
+  <div class="timeline" id="timeline"></div>
+</main>
+
+<footer><a href="index.html">← Back to the course site</a></footer>
+
+<script>
+// Filled in by _scripts/live_timetable.py from the rendered session pages.
+// Each item is [start, end, title, subtitle].
+const SESSIONS = {
+  "1": {
+    "date": "2026-11-02",
+    "title": "🐣 Session 1: Beginner",
+    "items": [
+      [
+        "13:30",
+        "13:50",
+        "Welcome to the course",
+        "What to expect when learning R"
+      ],
+      [
+        "13:50",
+        "14:25",
+        "Objects and assignment; vectors",
+        "Data types; missing values"
+      ],
+      [
+        "14:25",
+        "14:50",
+        "Practical 1",
+        ""
+      ],
+      [
+        "14:50",
+        "15:00",
+        "Break",
+        ""
+      ],
+      [
+        "15:00",
+        "15:50",
+        "Data frames; importing and exporting data",
+        "Subsetting"
+      ],
+      [
+        "15:50",
+        "16:00",
+        "Break",
+        ""
+      ],
+      [
+        "16:00",
+        "16:30",
+        "Practical 2",
+        ""
+      ],
+      [
+        "16:30",
+        "16:50",
+        "Control flow: <code>if<\/code>, <code>else<\/code> and <code>ifelse()<\/code>; <code>for<\/code> loops",
+        ""
+      ],
+      [
+        "16:50",
+        "17:00",
+        "What's coming: overview of Sessions 2–5",
+        ""
+      ]
+    ]
+  },
+  "2": {
+    "date": "2026-11-09",
+    "title": "🐥 Session 2: Functions and data manipulation",
+    "items": [
+      [
+        "13:30",
+        "13:40",
+        "Recap and questions from Session 1",
+        ""
+      ],
+      [
+        "13:40",
+        "14:10",
+        "Using and writing functions",
+        ""
+      ],
+      [
+        "14:10",
+        "14:40",
+        "Practical 1: functions",
+        ""
+      ],
+      [
+        "14:40",
+        "14:50",
+        "Break",
+        ""
+      ],
+      [
+        "14:50",
+        "15:35",
+        "The tidyverse; pipes",
+        "<code>select()<\/code>, <code>filter()<\/code> and <code>arrange()<\/code>"
+      ],
+      [
+        "15:35",
+        "16:05",
+        "Practical 2: first steps with <code>dplyr<\/code>",
+        ""
+      ],
+      [
+        "16:05",
+        "16:15",
+        "Break",
+        ""
+      ],
+      [
+        "16:15",
+        "16:55",
+        "Creating and modifying columns with <code>mutate()<\/code>",
+        "Recoding with <code>if_else()<\/code> and <code>case_when()<\/code>"
+      ],
+      [
+        "16:55",
+        "17:00",
+        "Wrap-up",
+        ""
+      ]
+    ]
+  },
+  "3": {
+    "date": "2026-11-16",
+    "title": "🐤 Session 3: Working with data",
+    "items": [
+      [
+        "13:30",
+        "13:40",
+        "Recap and Q&amp;A",
+        ""
+      ],
+      [
+        "13:40",
+        "14:00",
+        "Keeping a project organised",
+        "RStudio projects, folder structure and <code>here()<\/code>"
+      ],
+      [
+        "14:00",
+        "14:25",
+        "Practical 3: <code>mutate()<\/code> and recoding",
+        ""
+      ],
+      [
+        "14:25",
+        "14:35",
+        "Break",
+        ""
+      ],
+      [
+        "14:35",
+        "15:05",
+        "Combining datasets",
+        "<code>bind_rows()<\/code>, <code>left_join()<\/code> and friends"
+      ],
+      [
+        "15:05",
+        "15:30",
+        "Practical 4: joins",
+        ""
+      ],
+      [
+        "15:30",
+        "15:40",
+        "Break",
+        ""
+      ],
+      [
+        "15:40",
+        "16:05",
+        "Reshaping with <code>pivot_longer()<\/code> and <code>pivot_wider()<\/code>",
+        ""
+      ],
+      [
+        "16:05",
+        "16:30",
+        "Grouping and summarising",
+        "<code>group_by()<\/code>, <code>summarise()<\/code> and <code>count()<\/code>"
+      ],
+      [
+        "16:30",
+        "16:55",
+        "Practical 5: reshaping, grouping and summarising",
+        ""
+      ],
+      [
+        "16:55",
+        "17:00",
+        "Wrap-up",
+        ""
+      ]
+    ]
+  }
+};
+
+const $ = id => document.getElementById(id);
+const toMin = s => { const [h, m] = s.split(":").map(Number); return h * 60 + m; };
+const fmt = m => `${String(Math.floor(m / 60)).padStart(2, "0")}:${String(Math.floor(m % 60)).padStart(2, "0")}`;
+const dur = m => m >= 60 ? `${Math.floor(m / 60)}h ${m % 60 ? (m % 60) + "m" : ""}`.trim() : `${m} min`;
+const longDate = iso => new Date(iso + "T12:00").toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+const isoDate = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const PX_PER_MIN = 3.2;
+const ids = Object.keys(SESSIONS).map(Number);
+
+// ?session=N shows a given session; ?at=2026-11-02T14:40 fakes the clock
+// (useful for checking the page before teaching).
+const params = new URLSearchParams(location.search);
+const forced = Number(params.get("session")) || null;
+const at = params.get("at") ? new Date(params.get("at")) : null;
+const started = Date.now();
+function now() {
+  const d = at && !isNaN(at) ? new Date(at.getTime() + Date.now() - started) : new Date();
+  return { date: isoDate(d), min: d.getHours() * 60 + d.getMinutes() + d.getSeconds() / 60 };
+}
+
+// Today's session; otherwise the next one; otherwise the last one
+let chosen = forced && SESSIONS[forced] ? forced : null;
+function pickSession(today) {
+  return chosen
+      ?? ids.find(i => SESSIONS[i].date === today)
+      ?? ids.find(i => SESSIONS[i].date > today)
+      ?? ids.at(-1);
+}
+
+// "Running behind" pushes every item back by that many minutes. It is
+// remembered per session in this browser, so a reload keeps it.
+let delay = 0;
+const delayKey = id => `live-delay-${SESSIONS[id].date}`;
+function loadDelay(id) {
+  try { return Math.max(0, Number(localStorage.getItem(delayKey(id))) || 0); } catch { return 0; }
+}
+function saveDelay(id, v) {
+  try { v ? localStorage.setItem(delayKey(id), v) : localStorage.removeItem(delayKey(id)); } catch {}
+}
+
+let current = null, items = [], dayStart, dayEnd, span, fill, marker, nowline;
+function build(id) {
+  current = id;
+  const S = SESSIONS[id];
+  delay = loadDelay(id);
+  items = S.items.map(([start, end, title, sub]) => {
+    const s = toMin(start) + delay, e = toMin(end) + delay;
+    return {
+      start: fmt(s), end: fmt(e), planned: `${start} – ${end}`, title, sub, s, e,
+      kind: /^break$/i.test(title) ? "break" : /practical/i.test(title) ? "practical" : "",
+    };
+  });
+  dayStart = items[0].s; dayEnd = items.at(-1).e; span = dayEnd - dayStart;
+  $("delayInput").value = delay;
+  $("delayValue").textContent = `${delay} min`;
+  $("delayStatus").textContent = `Now finishing at ${fmt(dayEnd)}`;
+  $("delay").classList.toggle("on", delay > 0);
+  $("title").textContent = S.title;
+  $("date").textContent = longDate(S.date);
+  document.title = `Session ${id} · Live`;
+
+  const bar = $("bar"), labels = $("barLabels"), tl = $("timeline");
+  bar.innerHTML = labels.innerHTML = tl.innerHTML = "";
+  items.forEach(x => {
+    const seg = document.createElement("div");
+    seg.className = "seg " + x.kind;
+    seg.style.width = ((x.e - x.s) / span * 100) + "%";
+    seg.title = `${x.start}–${x.end}`;
+    bar.appendChild(seg);
+
+    const row = document.createElement("div");
+    row.className = "row " + x.kind;
+    row.style.height = Math.max(44, (x.e - x.s) * PX_PER_MIN) + "px";
+    row.innerHTML = `<div class="prog"></div><div class="t">${x.start} – ${x.end}${delay ? `<small>${x.planned}</small>` : ""}</div><div class="d">${dur(x.e - x.s)}</div>
+      <div class="topic">${x.title}${x.sub ? `<small>${x.sub}</small>` : ""}</div>`;
+    tl.appendChild(row);
+    x.row = row;
+  });
+  fill = Object.assign(document.createElement("div"), { className: "fill" });
+  marker = Object.assign(document.createElement("div"), { className: "marker" });
+  bar.append(fill, marker);
+  [dayStart, ...items.filter(x => x.kind === "break").map(x => x.s), dayEnd].forEach(m => {
+    const s = document.createElement("span");
+    s.style.left = ((m - dayStart) / span * 100) + "%";
+    s.textContent = fmt(m);
+    labels.appendChild(s);
+  });
+  nowline = Object.assign(document.createElement("div"), { className: "nowline" });
+  tl.appendChild(nowline);
+}
+
+function render() {
+  const t = now();
+  const id = pickSession(t.date);
+  if (id !== current) build(id);
+  const S = SESSIONS[id];
+
+  $("sessionNav").innerHTML = ids.map(i =>
+    `<a href="?session=${i}" data-id="${i}" class="${i === id ? "active" : ""} ${SESSIONS[i].date === t.date ? "today" : ""}">S${i}</a>`).join("");
+
+  // Minutes into the session's day; other days are wholly before or after
+  const isToday = S.date === t.date;
+  const m = isToday ? t.min : S.date > t.date ? -Infinity : Infinity;
+  $("clock").textContent = fmt(t.min);
+
+  const todaySession = ids.find(i => SESSIONS[i].date === t.date);
+  $("notice").textContent = isToday ? "" :
+    todaySession ? `Showing Session ${id}. Today is Session ${todaySession}.` :
+    S.date > t.date ? `No session today. Next up: ${longDate(S.date)}.` :
+    `The course has finished. Showing the last session.`;
+
+  const cur = items.find(x => m >= x.s && m < x.e);
+  const next = items.find(x => x.s > m);
+  if (cur) {
+    const left = cur.e - m;
+    $("nowTitle").innerHTML = cur.title;
+    $("nowSub").textContent = `${cur.start}–${cur.end} · ${dur(cur.e - cur.s)}`;
+    $("nowLeft").textContent = `${Math.ceil(left)} min`;
+    $("nowLeft").className = "value remaining" + (left <= 5 ? " warn" : "");
+    $("nowEnds").textContent = `Finish by ${cur.end}`;
+  } else {
+    const before = m < dayStart;
+    $("nowTitle").textContent = before ? "Not started" : "Finished";
+    $("nowSub").textContent = !before ? "" : isToday
+      ? `Starts at ${fmt(dayStart)} (in ${Math.ceil(dayStart - m)} min)`
+      : `Starts ${longDate(S.date)} at ${fmt(dayStart)}`;
+    $("nowLeft").textContent = "–"; $("nowLeft").className = "value remaining"; $("nowEnds").textContent = "";
+  }
+  $("nextTitle").innerHTML = next ? next.title : "–";
+  $("nextSub").textContent = next ? `at ${next.start}` : "";
+
+  const frac = Math.min(1, Math.max(0, (m - dayStart) / span));
+  fill.style.width = (frac * 100) + "%";
+  marker.style.left = `calc(${frac * 100}% - 1px)`;
+  marker.style.display = frac > 0 && frac < 1 ? "" : "none";
+
+  let lineTop = null;
+  items.forEach(x => {
+    x.row.classList.toggle("past", m >= x.e);
+    x.row.classList.toggle("current", x === cur);
+    const p = x === cur ? (m - x.s) / (x.e - x.s) : 0;
+    x.row.querySelector(".prog").style.width = (p * 100) + "%";
+    if (x === cur) lineTop = x.row.offsetTop + p * x.row.offsetHeight;
+  });
+  nowline.style.display = lineTop === null ? "none" : "";
+  if (lineTop !== null) { nowline.style.top = lineTop + "px"; nowline.dataset.time = fmt(m); }
+}
+
+// Session pills switch without reloading, keeping any ?at= override
+$("sessionNav").addEventListener("click", e => {
+  const a = e.target.closest("a"); if (!a) return;
+  e.preventDefault();
+  chosen = Number(a.dataset.id);
+  params.set("session", chosen);
+  history.replaceState(null, "", `?${params}`);
+  render();
+});
+
+function setDelay(v) {
+  saveDelay(current, v);
+  build(current);
+  render();
+}
+$("delayInput").addEventListener("input", e => setDelay(Number(e.target.value)));
+$("delayReset").addEventListener("click", () => setDelay(0));
+
+render();
+setInterval(render, 15000);
+</script>
+</body>
+</html>
